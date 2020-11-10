@@ -1,0 +1,30 @@
+/*表格不能对其的问题*/
+body .el-table th.gutter {
+  display: table-cell !important;
+}
+body .el-table colgroup.gutter {
+  display: table-cell !important;
+}
+/*设置table的行高,注意：medium 必须和main.js 中 Vue.use(Element, {size: 'medium'} 保持一致*/
+.el-table__header tr,
+.el-table__header th {
+  padding: 0;
+  height: 40px;
+}
+.el-table__body tr,
+.el-table__body td {
+  padding: 0;
+  height: 35px;
+}
+
+/*body 填充*/
+.el-card__body {
+  padding: 10px;
+}
+.el-form--inline .el-form-item{
+  margin-bottom:10px;
+}
+/*dialog body 填充*/
+.el-dialog__body {
+  padding: 10px 15px;
+}

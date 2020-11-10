@@ -1,0 +1,176 @@
+$red:#EA3A43;
+$blue: #429EFD;
+$green: #33D187;
+
+@mixin allSize-PX($title, $title-b, $bottom, $fontSize, $fontSize-a, $way, $height) {
+    .color-box{
+        font-size:$title;
+        font-family:PingFang SC;
+        font-weight:800;
+        line-height: 30px;
+        float: right;
+        div{
+            float: left;
+            display: flex;
+            align-items: center;
+            padding-left: 5px;
+            margin-left: 40px;
+        }
+        div:nth-child(1){
+            margin-left: 0;
+        }
+        .red{
+            color: $red;
+            span{
+                background-color: $red;
+            }
+        }
+        .blue{
+            color: $blue;
+            span{
+                background-color: $blue;
+            }
+        }
+        .green{
+            color: $green;
+            span{
+                background-color: $green;
+            }
+        }
+        span{
+            width: $title;
+            height: $title;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+    }
+
+    .yard-content{
+        font-size: $fontSize;
+        .yard-item{
+            padding-bottom: $bottom;
+        }
+        .yard-item:nth-child(1){
+            padding-top:10px;
+        }
+        .yard-title{
+            font-size: $title;
+            font-family:PingFang SC;
+            font-weight:800;
+            color:rgba(0,0,0,1);
+            padding-bottom: $title-b;
+        }
+        .yard-children{
+            display: flex;
+        }
+        .yard-children-item{
+            flex: 1;
+            background:rgba(66,158,253,1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 2px solid #fff;
+            font-size: $fontSize;
+            height: $height;
+            color: #fff;
+            position: relative;
+        }
+        .yard-children-item:nth-last-of-type(1){
+            border: none;
+        }
+        // 红色:搜索筛选出的堆场
+        .yard-children-item.red{
+            background-color: $red;
+        }
+        // 蓝色:空余
+        .yard-children-item.blue{
+            background-color: $blue;
+        }
+        // 绿色:已放
+        .yard-children-item.green{
+            background-color: $green;
+        }
+        .yard-children-item:hover{
+            opacity: .5;
+        }
+        .yard-way{
+            height: $way;
+            font-size: $fontSize;
+            background:rgba(229,229,229,1);
+            line-height: $way;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-family:PingFang SC;
+            font-weight:800;
+            color:rgba(66,158,253,1);
+            position: relative;
+            div{
+                position: relative;
+                z-index: 2;
+            }
+            &::before{
+                content: "";
+                position: absolute;
+                height: 5px;
+                width: 95%;
+                margin: 0 auto;
+                display: table;
+                z-index: 1;
+                background: -webkit-repeating-linear-gradient(top left, rgba(229,229,229,1), rgba(229,229,229,1) 25px, #fff 25px, #fff 50px);
+            }
+        }
+        .stockInfo{
+            font-size: 12px;
+            color: #fff;
+            width:500px;
+            min-height:50px;
+            background:rgba(0,0,0,.5);
+            border-radius:6px;
+            box-sizing: border-box;
+            padding: 17px 12px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            text-align: left;
+            transition: 1s;
+            z-index: 3;
+            .stockInfo-header{
+                padding-bottom:20px;
+            }
+            .stockInfo-item{
+                line-height: 20px;
+            }
+        }
+    }
+  }
+
+  /* 设置了浏览器宽度不大于1200px时 */
+  @media screen and (max-width: 1400px) {
+    @include allSize-PX( 
+      $title: 14px,
+      $title-b: 12px,
+      $bottom: 40px,
+      $fontSize: 13px,
+      $fontSize-a: 11px,
+      $way: 31px,
+      $height: 50px
+    );
+  }
+  @media screen and (min-width:1401px) {
+    @include allSize-PX(
+        $title: 22px,
+        $title-b: 19px,
+        $bottom: 64px,
+        $fontSize: 20px,
+        $fontSize-a: 18px,
+        $way: 50px,
+        $height: 80px
+    );
+  }
+
+
+
+
+

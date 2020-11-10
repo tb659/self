@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="box">
+    <div id="text" v-if='flag'>获取文字</div>
+    <button @click='handleClick'>点击</button>
+  </div>
+  <script src="vue.js"></script>
+  <script>
+    new Vue({
+      el: '#box',
+      data: {
+        flag: false
+      },
+      methods: {
+        handleClick() {
+          this.flag = true
+          // let el = document.getElementById('text')
+          // console.log(el)
+
+          this.$nextTick(() => {
+            let el = document.getElementById('text')
+            console.log(el)
+          })
+        }
+      }
+    })
+
+
+
+
+
+    
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+  <!-- <script src="vue.js"></script> -->
+</head>
+
+<body>
+  <div id="app">
+    <div>{{a}}</div>
+    <button @click="handleClick">改变</button>
+    <div>父组件</div>
+    <div>
+      <my-comp :b="a" />
+    </div>
+    <div>
+      <my-con-p />
+    </div>
+  </div>
+  <script>
+
+
+    Vue.component('myComp', {
+      template: `
+      <div>全局子组件---{{b}}---{{d}}</div>
+        `,
+      props: ['b'],
+      data() {
+        return {
+          c: this.b,
+          d: 111
+        }
+      },
+      watch: {
+        // 'q': {
+        //   deep: true,
+        //   handler(a, b) {
+        //     console.log(a, b)
+
+        //   }
+        // }
+        q(a, b) {
+          console.log(a, b)
+        }
+      },
+      computed: {
+        q() {
+          return this.b
+        }
+      }
+    })
+    const MyComP = {
+      template: `<div>局部子组件</div>`
+    }
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        a: 11
+      },
+      components: {
+        'my-con-p': MyComP
+      },
+      methods: {
+        handleClick() {
+          setTimeout(() => {
+          this.a++
+          }, 1000);
+          // console.log(this.a)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

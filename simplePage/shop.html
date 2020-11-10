@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>react</title>
+  <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+  <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      user-select: none;
+    }
+
+    .cont {
+      padding: 20px;
+    }
+
+    .total {
+      color: red;
+      font-weight: bold;
+    }
+
+    .jian,
+    .jia {
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      border: 1px #000 solid;
+      box-sizing: border-box;
+      text-align: center;
+      border-radius: 50%;
+    }
+
+    .val {
+      line-height: 30px;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .clearfix::after,
+    .clearfix::before {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    .boxlist {
+      width: 500px;
+      margin: 20px auto;
+    }
+
+    .list {
+      padding: 10px 0;
+      border-bottom: 1px #888888 solid;
+    }
+
+    .price {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id='app'></div>
+  <!-- 注意此时script标签的类型 -->
+  <script type='text/babel'>
+
+
+		/*渲染组件*/
+		class App extends React.Component{
+
+			state = {
+				goodsList: [
+					{
+							id: 0,
+							title: '苏泊尔电热水壶家用官方旗舰店保温电热烧水壶304不锈钢自动断电',
+							price: 79.00,
+							num: 0,
+					},
+					{
+							id: 1,
+							title: '衣柜简易儿童组装塑料布艺租房卧室家用挂仿实木单布衣橱收纳柜子',
+							price: 58.00,
+							num: 0,
+					},
+					{
+							id: 2,
+							title: '简易塑料鞋柜防尘收纳组装家用经济宿舍鞋架简约现代省空间门厅柜',
+							price: 139.00,
+							num: 0,
+					},
+					{
+							id: 3,
+							title: '拼装分层门口实用鞋子折叠鞋架多层伸缩结实高低学校调节拆装简易',
+							price: 19.90,
+							num: 0,
+					}
+				],
+        min: 0,
+        max: 10,
+        total: 0
+      }
+
+
+      add = (good) => {
+        const { goodsList, max } = this.state
+        let { id, num } = good
+        goodsList[id].num = num >= max ? max : ++num
+        this.setState({goodsList: [...goodsList]})
+        this.total()
+      }
+      minus = (good) => {
+        const { goodsList, min } = this.state
+        let { id, num } = good
+        goodsList[id].num = num <= min ? min : --num
+        this.setState({goodsList: [...goodsList]})
+        this.total()
+      }
+
+      total = () => {
+        const { goodsList } = this.state
+        let allTotal = 0
+        goodsList.forEach(item => {
+          allTotal += item.price * item.num
+        })
+        this.setState({total: allTotal})
+      }
+
+			render(){
+				const { goodsList, total } = this.state
+				return(
+					<div className="cont">
+            <Listitem goodsList={goodsList}   add={this.add} minus={this.minus} />
+            <div className="total">总价： {total} </div>
+					</div>
+				)
+			}
+		}
+			
+		
+
+		/*商品列表组件*/
+		class Listitem  extends React.Component{
+
+			add = (good) => {
+        this.props.add(good)
+      }  
+			minus = (good) => {
+        this.props.minus(good)
+			}
+
+			render(){
+				const {goodsList} = this.props
+				return(
+					<div>
+						<ul className="clearfix boxlist">
+							{goodsList.map((item,index)=>{
+								return <li key={item.id} className="list">
+										<div>{item.title}</div>
+										<div>{item.price}</div>
+										<Numbers good={item} add={this.add} minus={this.minus} />
+										<div>价钱:<span className="price">{item.price*item.num}</span></div>
+								</li>
+							})}
+						</ul>
+					</div>
+				)
+			}
+		}
+
+
+		/*加减数字框组件*/
+		class Numbers extends React.Component{
+		
+			add = (good) => {
+        this.props.add(good)
+      }  
+			minus = (good) => {
+        this.props.minus(good)
+			}
+		
+
+			render(){
+				const {good} = this.props
+				return (
+					<div>
+						<div className="flex">
+							<div className="jian" onClick={() => {this.minus(good)}}>-</div>
+							<div className="val">{good.num}</div>
+							<div className="jia" onClick={() => {this.add(good)}}>+</div>
+						</div>
+					</div>
+				)
+			}
+		}
+
+
+		ReactDOM.render( <App/>, document.getElementById('app') )
+
+
+	</script>
+</body>
+
+</html>

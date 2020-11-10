@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="moment.js"></script>
+</head>
+
+<body>
+  <div id='box'>
+    {{date | format}}
+  </div>
+  <script src='https://cdn.jsdelivr.net/npm/vue'></script>
+  <script>
+
+    Vue.filter('format',(v) => {
+      return moment(v).format('YYYY-MM-DD HH:mm:ss')
+    })
+
+    new Vue({
+      el: '#box',
+      data: {
+        date: new Date().getTime()
+      },
+      methods: {
+
+      },
+      created() {
+        setInterval(() => {
+          this.date = new Date().getTime()
+        }, 1000)
+      },
+    });
+  </script>
+</body>
+
+</html>

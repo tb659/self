@@ -1,0 +1,285 @@
+.aui-page__login {
+  min-width: 1300px;
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    content: "";
+  }
+  &::before {
+    background-image: url(~@/assets/img/login_bj.png);
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  &::after {
+  }
+  .aui-content {
+    min-height: 100vh;
+    padding: 150px 0px 80px;
+    display: flex;
+    align-items: center;
+    &__wrapper {
+      height: 100vh;
+      background-color: transparent;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+  
+  @mixin allSize-PX($top) {
+    .login-header {
+      position: absolute;
+      left: 20%;
+      top: $top;
+        img{
+          width:659px;
+          height:64px;
+        }
+    }
+  }
+  @media screen and (min-width: 1401px) {
+    @include allSize-PX(
+      $top:20px
+    );
+  }
+  @media screen and (min-width: 1500px) {
+    @include allSize-PX(
+      $top:30px
+    );
+  }
+  @media screen and (min-width: 1600px) {
+    @include allSize-PX(
+      $top:58px
+    );
+  }
+  /* 设置了浏览器宽度不大于1400px时 */
+  @media screen and (max-width: 1400px) {
+    @include allSize-PX(
+      $top:10px
+    );
+  }
+  .login-body{
+    width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    border-radius: 10px;
+    .login-left{
+      width: 350px;
+      img{
+        width: 350px;
+      }
+    }
+  }
+  .login-footer{
+    left: 50%;
+    margin-left: -220px;
+    p{
+      text-align: center;
+      width: 440px;
+      font-size:14px;
+      font-family:PingFang SC;
+      font-weight:500;
+      color:rgba(11,77,150,1);
+    }
+  } 
+  .login-body {
+    background-color: #fff;
+    text-align: center;
+    display: flex;
+    width: 700px !important;
+    .login-right{
+      flex: 1;
+      padding: 20.5px 35px 0;
+      box-shadow:0px 0px 60px 0px rgba(186,131,124,0.1);
+      .login-logo{
+        margin-bottom: 14px;
+        text-align: center;
+        img{
+          width: 62px;
+          height: 64px;
+        }
+      }
+    }
+    .login-title {
+      font-size: 22px;
+      font-weight: 400;
+      color: #0B4D96;
+      font-weight:bold;
+      margin-top: 14px;
+      margin-bottom: 33px;
+    }
+    .el-form-item{
+      margin-bottom: 22px;
+    }
+    .el-input__prefix{
+      left: 10px;
+    }
+    .el-input__prefix .el-input__icon {
+      width: 14px;
+      height: 16px;
+    }
+    .login-captcha {
+      height: $--input-height;
+      line-height: $--input-height -2px;
+      > img {
+        max-width: 100%;
+        cursor: pointer;
+      }
+    }
+    .w-percent-100{
+      background:rgba(39,103,177,1);
+      border-radius:4px;
+      border: none;
+      font-size:16px;
+      font-family:PingFang SC;
+      font-weight:500;
+      color:rgba(255,255,255,1);
+    }
+    .login-shortcut {
+      margin-bottom: 20px;
+      &__title {
+        position: relative;
+        margin: 0 0 15px;
+        font-weight: 400;
+        
+        &::before {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          left: 0;
+          z-index: 1;
+          content: "";
+          height: 1px;
+          margin-top: -.5px;
+          background-color: $--border-color-base;
+          overflow: hidden;
+        }
+        > span {
+          position: relative;
+          z-index: 2;
+          padding: 0 20px;
+          color: rgba(0, 0, 0, .3);
+          background-color: #fff;
+        }
+      }
+      &__list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        font-size: 0;
+        > li {
+          display: inline-block;
+          vertical-align: middle;
+          margin: 0 10px;
+          font-size: 28px;
+        }
+      }
+    }
+    .login-guide {
+      color: rgba(0, 0, 0, .3);
+    }
+  }
+  .login-footer {
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    color: rgba(255, 255, 255, .6);
+    p {
+      margin: 10px 0;
+    }
+    a {
+      padding: 0 5px;
+      color: rgba(255, 255, 255, .6);
+      &:focus,
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+  // 右侧垂直风格
+  &--right-vertical {
+    .aui-content {
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: stretch;
+      padding: 0;
+    }
+    .login-header {
+      flex: 1;
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      padding: 30px 120px;
+      text-align: left;
+    }
+    .login-body {
+      position: relative;
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      padding: 120px 30px 150px;
+      text-align: center;
+      .login-guide {
+        margin-top: 0;
+      }
+    }
+    .login-footer {
+      right: 0;
+      color: $--color-text-regular;
+      a {
+        color: $--color-text-regular;
+        &:focus,
+        &:hover {
+          color: $--color-primary;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 991px) {
+  .aui-page__login {
+    &--right-vertical {
+      .login-header {
+        padding: 30px;
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .aui-page__login {
+    &--right-vertical {
+      .login-header {
+        .login-brand,
+        .login-intro {
+          display: none;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 575px) {
+  .aui-page__login {
+    .login-body,
+    .login-footer {
+      width: 100%;
+    }
+    .login-captcha {
+      text-align: left;
+      > img {
+        width: 136px;
+      }
+    }
+    &--right-vertical {
+      .login-header {
+        display: none;
+      }
+    }
+  }
+}
