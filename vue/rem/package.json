@@ -31,12 +31,10 @@
   "postcss": {
     "plugins": {
       "autoprefixer": {},
-      "postcss-pxtorem": {
-        "rootValue": 150,
-        "propList": [
-          "*"
-        ]
-      }
+      "postcss-px-to-viewport": {
+        "viewportWidth": 1500,
+        "minPixelValue": 1
+    }
     }
   }
 }

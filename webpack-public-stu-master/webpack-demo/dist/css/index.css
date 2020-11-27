@@ -8,6 +8,13 @@ li {
 .header {
   width: 100%;
   height: 400px;
-  background: url(../images/02.jpg);
+  background: url(../images/02.jpg) no-repeat;
+}
+ul {
+  background-color: red;
+}
+ul li {
+  margin-bottom: 20px;
+  background-color: pink;
 }
 

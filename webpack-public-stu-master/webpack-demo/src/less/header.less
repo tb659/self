@@ -1,6 +1,16 @@
+
+
+@import './mixins.less';
 .header {
   width: 100%;
   height: 400px;
   // background-color: pink;
-  background: url('../imgs/02.jpg');
+  background: url('../imgs/02.jpg') no-repeat;
+}
+ul {
+  background-color: @color;
+  li {
+    margin-bottom: 20px;
+    background-color: pink;
+  }
 }

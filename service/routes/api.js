@@ -11,7 +11,7 @@ router.get('/user1', (req, res) => {
   res.send({ code: '200', data: { method: 'get方法', list: [{ a: 12, b: 24 }] } })
 })
 router.post('/user2', (req, res) => {
-  console.log(req.body)
+  console.log('post请求', req.body)
   res.send({ code: '200', data: { method: 'post方法', list: [{ a: 12, b: 24 }] } })
 })
 router.put('/user3', (req, res) => {
